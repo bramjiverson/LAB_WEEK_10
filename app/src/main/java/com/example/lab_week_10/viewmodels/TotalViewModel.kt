@@ -4,9 +4,16 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
 class TotalViewModel : ViewModel() {
-    val total = MutableLiveData(0)
+
+    private val _total = MutableLiveData(0)
+    val total = _total
 
     fun incrementTotal() {
-        total.value = (total.value ?: 0) + 1
+        _total.value = (_total.value ?: 0) + 1
+    }
+
+    // Set total from database
+    fun setTotal(newTotal: Int) {
+        _total.postValue(newTotal)
     }
 }
